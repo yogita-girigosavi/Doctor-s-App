@@ -1,0 +1,56 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor's Appointment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div class="top-section">
+		<a href="logout.php">logout</a>
+	</div>
+    <div class="container">
+        <div class="header">
+            <h1 id="doctor-name"></h1>
+            <p>
+				<span id="doctor-qualifications"></span>-
+				<span id="doctor-specialty"></span>
+			</p>
+            <button class="btn">View Profile</button>
+        </div>
+
+        <div class="appointment-section">
+            <h2>Book Appointment</h2>
+            <p id="doctor-fees"></p>
+
+           <label for="clinic">Clinic Name:</label>
+		<select id="clinic" name="clinic" onchange="fetchClinicDetails()">
+    		<!-- Options will be populated dynamically -->
+		</select>
+		<p id="clinic-address">Address will appear here...</p>
+
+
+            <label for="appointment-date">Appointment Date:</label>
+            <input type="date" id="appointment-date" name="appointment-date" onchange="fetchSlots()">
+
+            <div class="slots">
+                <h3>Available Slots</h3>
+                <div id="slots-container">No Slots Available</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script> 
+</body>
+</html>
